@@ -3,13 +3,11 @@ import Notiflix from 'notiflix';
 import fetchCountries from './fetchCountries';
 var debounce = require('lodash.debounce');
 
-const DEBOUNCE_DELAY = 600;
+const DEBOUNCE_DELAY = 300;
 const inputEl = document.querySelector("#search-box")
 const countryListEl = document.querySelector(".country-list")
 const divEl = document.querySelector(".country-info")
 inputEl.addEventListener("input",debounce(searchCuntries,DEBOUNCE_DELAY))
-
-
 
 
 function searchCuntries(e) {
@@ -22,7 +20,6 @@ else{fetchCountries(Cuntry)
     .then(renderCuntryCard)
     .catch(error=> Notiflix.Notify.failure("Oops, there is no country with that name"))
 }}
-
  
 function renderCuntryCard(data) {
     if (data.length > 10) {
