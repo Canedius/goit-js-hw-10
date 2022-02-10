@@ -16,8 +16,7 @@ function searchCuntries(e) {
 e.preventDefault();  
 const Cuntry = e.target.value.trim()
 if (!Cuntry) {
-divEl.innerHTML = ""
-countryListEl.innerHTML = ""   
+ cleanMarkup()   
 }
 else{fetchCountries(Cuntry)
     .then(renderCuntryCard)
@@ -29,13 +28,11 @@ function renderCuntryCard(data) {
     if (data.length > 10) {
     Notiflix.Notify.info("Too many matches found. Please enter a more specific name.")
     }else if(data.length >= 2){   
-    divEl.innerHTML = ""
-    countryListEl.innerHTML = ""
+    cleanMarkup()
     const markup  = cuntryCards(data)
     countryListEl.innerHTML = markup.join("")
     } else {
-    divEl.innerHTML = ""
-    countryListEl.innerHTML = ""
+    cleanMarkup()
     const markup = cuntryOneCard(data)
     divEl.innerHTML = markup.join("")
      } 
@@ -56,4 +53,8 @@ return`<Img class = img src ="${flags.svg}" alt = flag ${name.official}>
 <p class=text>Population: ${population}</p>
 <p class=text>Languages: ${listlanguages}</p>
 `});
+}
+function cleanMarkup(params) {
+ divEl.innerHTML = ""
+countryListEl.innerHTML = ""  
 }
